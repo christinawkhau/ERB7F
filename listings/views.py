@@ -1,9 +1,14 @@
 from django.shortcuts import render
+from .models import Listing
 
 # Create your views here.
 
 def listings(request):
-    return render(request, 'listings/listings.html')
+    listings=Listing.objects.all() #can add .filter(is_published=True) after all()
+    #select * order by
+    context ={"listings":listings} #key value pair  or we van put  
+    #context={"listings":listings, "users":Users}
+    return render(request, 'listings/listings.html', context)
 
 def listing(request):
     return render(request, 'listings/listing.html')
