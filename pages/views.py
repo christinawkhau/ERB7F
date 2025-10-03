@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from listings.models import Listing
 
 # Create your views here.
 
@@ -10,7 +10,9 @@ from django.http import HttpResponse
 def index(request):
 #    return HttpResponse("<h1>Hello world!</h1>")
 #    print(request.path)
-    return render(request, 'pages/index.html')
+     listings=Listing.objects.filter(is_published=True)[:3]  #[:3]=0,1,2 -- sublist
+     context={"listings":listings}
+     return render(request, 'pages/index.html', context)
 # views.about
 
 def about(request):

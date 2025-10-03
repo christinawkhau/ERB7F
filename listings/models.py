@@ -27,6 +27,12 @@ class Listing(models.Model):
     is_published=models.BooleanField(default=True)  #create a checker for tracking
     list_date=models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        ordering = ('-list_date',)
+        indexes = [models.Index(fields=['list_date'])]
+# useing this, in database, we force ordering of data, 
+#sorting can do multiple fields
+
     def __str__(self):      #python internal variable
         return self.title
     
