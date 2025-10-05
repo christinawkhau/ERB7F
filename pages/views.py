@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from listings.models import Listing
 from doctors.models import Doctor
-###
+
 # Create your views here.
 
 # functions
