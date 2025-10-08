@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from doctors.models import Doctor
+from . choices import district_choices
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Listing(models.Model):
     doctor=models.ForeignKey(Doctor, on_delete=models.DO_NOTHING) #if table clinic is deleted, doctor stay the same, ie do nothing
     title=models.CharField(max_length=200)  #no need declare id, since ORM automaticallly generate ID and no need to define ID
     address=models.CharField(max_length=200)
-    district = models.CharField(max_length=50)
+    district = models.CharField(max_length=50, choices=district_choices.items())
     description=models.TextField(blank=True) #blank=True mean can be no data, optional
     services = models.CharField(max_length=200)
     service = models.IntegerField()

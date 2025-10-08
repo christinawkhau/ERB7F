@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Listing
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -27,7 +27,7 @@ def listings(request):
     return render(request, 'listings/listings.html', context)
 
 def listing(request, listing_id):
-    listing=Listing.objects.get(id=listing_id)
+    listing=get_object_or_404(Listing, pk=listing_id) #if user press more info while admin stop people accessing, will be breakdown, so need to add an query
     context={"listing":listing}
     return render(request, 'listings/listing.html', context)
 

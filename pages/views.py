@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from listings.models import Listing
 from doctors.models import Doctor
+from listings.choices import district_choices, room_choices, night_choices
 
 # Create your views here.
 
@@ -12,7 +13,12 @@ def index(request):
 #    return HttpResponse("<h1>Hello world!</h1>")
 #    print(request.path)
      listings=Listing.objects.filter(is_published=True)[:3]  #[:3]=0,1,2 -- sublist
-     context={"listings":listings}
+     context={"listings":listings,
+              "district_choices":district_choices,
+              "room_choices":room_choices,
+              "night_choices":night_choices
+              }
+     
      return render(request, 'pages/index.html', context)
 # views.about
 
