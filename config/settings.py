@@ -36,6 +36,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'debug_toolbar',
+    'taggit',
 ]
 
 APPLICATION_APPS = [
@@ -143,5 +144,7 @@ INTERNAL_IPS = [
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL='/media/'
+
+TAGGIT_CASE_INSENSIVE=True
 
 

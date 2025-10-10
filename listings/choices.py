@@ -24,10 +24,10 @@ room_choices={
     "Standard (Multi-bed) Rooms" : "Standard (Multi-bed) Rooms"    
 }
 
-night_choices = {
+rooms_choices = {
     '1' : '1',
     "2" : "2",
     "3" : "3",
     "4" : "4",
-    "%" : "5",
+    "5" : "5",
 }
