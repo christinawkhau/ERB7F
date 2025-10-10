@@ -10,11 +10,11 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 
 class ListingAdminForm(forms.ModelForm):
-    subjects=forms.ModelMultipleChoiceField(
+    professionals=forms.ModelMultipleChoiceField(
         queryset=Subject.objects.all(),
         widget=FilteredSelectMultiple(verbose_name='Professionals', is_stacked=False,
-attrs={'rows':'5'}), required=False, label='Select Professionals'
-                                   )
+attrs={'rows':'5'}), required=False, label='Select Professionals')
+                                   
 
 
     class Meta:
@@ -33,13 +33,13 @@ attrs={'rows':'5'}), required=False, label='Select Professionals'
 
 class ListingAdmin(admin.ModelAdmin):
     form = ListingAdminForm #tailor make display, which item to display
-    list_display="id",'title', 'district', 'is_published', 'rooms','doctor', 'tag_list' #tuple no need {}
+    list_display="id",'title', 'district', 'is_published', 'rooms','doctor', 'tag_list', 'display_professionals' #tuple no need {}
     list_display_links='id', 'title'        
     list_filter=("doctor", "services") #must need comma to indicate tuple, if more than one like line 6, 
     #no need comma at the end
     #can show ("is_published",) however even more confusing
     list_editable="is_published", "rooms" #the editable value too small, if want bigger, # add line 20
-    search_fields=("title", "district", "doctor__name", "services_name") 
+    search_fields=("title", "district", "doctor__name", "services__name", "professionals__name") 
     list_per_page=25
    # filter_horizontal = ('services',)
     ordering=['-id']
@@ -50,15 +50,16 @@ class ListingAdmin(admin.ModelAdmin):
         }, 
     }
     
+    
     show_facets=admin.ShowFacets.ALWAYS 
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('services', 'professionals') 
 
-def get_queryset(self, request):
-    return super().get_queryset(request).prefetch_related('services') 
+    def display_professionals(self, obj):
+        return ", ".join([subject.name for subject in obj.professionals.all()]) or 'None'
 
-def display_subjects(self, obj):
-    return", ".join([subject.name for subject in obj.subjects.all()])
-display_subjects.short_Description="Professionals"
+    display_professionals.short_description="Professionals"
 
 
 
