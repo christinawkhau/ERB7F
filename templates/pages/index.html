@@ -1,7 +1,9 @@
 {% extends 'base.html' %} 
-
 <!-- load humanize -->
- {% load humanize %} {% block content %}
+{% load humanize %}
+<!-- block title -->
+{% block title %} | Welcome {% endblock title %}
+{% block content %} {% load static %}
 
     <!-- Showcase -->
     <section id="showcase">
