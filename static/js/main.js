@@ -1,2 +1,7 @@
 const date = new Date();
 document.querySelector('.year').innerHTML = date.getFullYear();
+
+setTimeout(()=>{
+    $('message').fadeOut("slow");       //find message id and diabled it 
+},3000);
+
