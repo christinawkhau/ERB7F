@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include("pages.urls", namespace="pages")), #these are endpoints #app that runs more put at the top, so web response is faster 
     path('listings/', include("listings.urls", namespace="listings")), #endpoints
+    path('contacts/', include("contacts.urls", namespace="contacts")),
     path('accounts/',include("accounts.urls", namespace="accounts")),
     path('admin/', admin.site.urls),
 ] + debug_toolbar_urls() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #these not end points

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from contacts.models import Contact
+
 # Create your views here.
 def register(request):
     if request.method =="POST":
@@ -58,4 +60,10 @@ def logout(request):
     return redirect("pages:index")
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    user_contacts=Contact.objects.filter(user_id=request.user.id).order_by('-contact_date') 
+    #filter user_id from table contacts where all queries info
+    # add order by to force it to update the database
+    # filter user_id from table contact
+    # put in variable user_contacts
+    context={"contacts":user_contacts} 
+    return render(request, 'accounts/dashboard.html',context)
