@@ -1,19 +1,19 @@
 # Django Clinic Project
 ## Steps to build the porject
 ### 1. Create virtual environment
-'''bash
+```bash
 mkvirtualenv erb7
-'''
+```
 ### 2. Create project folder
-'''hash
+```hash
 django-admin startproject erb7 .
-'''
+```
 
 ### 3. Install requirements
 
 $$$ 4. run the server
 
-'''py
+```py
 
 from django.apps import AppConfig
 
