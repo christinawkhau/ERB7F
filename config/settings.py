@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'clinic',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -121,14 +121,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Hong_Kong'
+#TIME_ZONE = 'Asia/Hong_Kong'
+TIME_ZONE = 'Asia/Shanghai'
+
 
 USE_I18N = True
 
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files docs(CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -138,13 +140,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'config/staticfiles')]
 # original static files
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# https://.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+INTERNAL_IPS = [ "127.0.0.1",]
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL='/media/'
@@ -155,4 +154,10 @@ MESSAGE_TAGS={
     messages.SUCCESS: 'success',
 }
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True  
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'christinawkhau2015@gmail.com'  
