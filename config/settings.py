@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'clinic',
         'USER': 'postgres',
-        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432'
     }
